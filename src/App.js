@@ -7,6 +7,7 @@ import WorkComponent from './components/WorkComponent';
 import ContactComponent from './components/ContactComponent';
 import FooterComponent from './components/FooterComponent';
 import Loader from './components/Loader';
+import NotFound from './components/NotFound';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import './assets/App.css';
@@ -27,35 +28,37 @@ function App() {
     <>
       {
         isLoading === true? ( <Loader /> ) : (
-            <div className = "App">
-              <NavbarComponent />
-              <div className="content">
-              <AnimatePresence exitBeforeEnter>
-              <Switch  location = {location} key={location.key}>
-                  <Route exact path="/">
-                    <HomeComponent />
-                  </Route>
-                  <Route path="/home">
-                    <HomeComponent />
-                  </Route>
-                  <Route path="/about">
-                    <AboutComponent />
-                  </Route>
-                  <Route path="/council">
-                    <CouncilComponent />
-                  </Route>
-                  <Route path="/work">
-                    <WorkComponent />
-                  </Route>
-                  <Route path="/contact">
-                    <ContactComponent />
-                  </Route>
-                </Switch>
-                </AnimatePresence>
-              </div>
-              <hr className="mx-4 mt-5" />
-              <FooterComponent />
-            </div >
+          <div className = "App">
+            <NavbarComponent />
+            <div className="content">
+            <AnimatePresence exitBeforeEnter>
+            <Switch  location = {location} key={location.key}>
+                <Route exact path="/">
+                  <HomeComponent />
+                </Route>
+                <Route path="/home">
+                  <HomeComponent />
+                </Route>
+                <Route path="/about">
+                  <AboutComponent />
+                </Route>
+                <Route path="/council">
+                  <CouncilComponent />
+                </Route>
+                <Route path="/work">
+                  <WorkComponent />
+                </Route>
+                <Route path="/contact">
+                  <ContactComponent />
+                </Route>
+                <Route path="*">
+                  <NotFound />
+                </Route>
+              </Switch>
+              </AnimatePresence>
+            </div>
+            <FooterComponent />
+          </div >
         )
       }
     </>
